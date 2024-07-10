@@ -18,9 +18,11 @@ echo -e "\t- Config VIM"
 git clone https://github.com/alterGNU42/.vim.git && cd ~/.vim && git submodule init && git submodule update
 
 # -[ OH-MY-ZSH ]------------------------------------------------------------------------------------
-echo -e "\t- Install Oh-My-Zsh"
+echo -e "\t- Config ZSH"
 sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 chmod -s $(which zsh)
+echo "alias ccw=\"cc -Wall -Wextra -Werror -lbsd\"" >> ~/.zshrc
+echo "export PATH=/home/altergnu/.local/funcheck/host:$PATH" >> ~/.zshrc
 
 # -[ GOOGLE-CHROME ]--------------------------------------------------------------------------------
 echo -e "\t- Install Google-Chrome"
