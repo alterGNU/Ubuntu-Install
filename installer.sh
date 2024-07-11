@@ -14,7 +14,7 @@ sudo apt update
 yes | sudo apt upgrade
 
 # -[ LISTE DES PAQUETS A INSTALLER ]----------------------------------------------------------------
-PACK_LIST=("git" "zsh" "vim" "clang-12" "gdb" "valgrind")
+PACK_LIST=("git" "zsh" "vim" "clang-12" "gdb" "valgrind" "python3")
 for pkg in ${PACK_LIST[@]};do
     echo -e "\t- Install package ${pkg}"
     if is_installed "${pkg}";then
@@ -64,18 +64,16 @@ else
     git config --global user.email "alterGNU.42@gmail.com"
     git config --global diff.tool vimdiff
 fi
-git config --global --list
+#git config --global --list
 
 # -[ NORMINETTE ]-----------------------------------------------------------------------------------
-
-## -[ CLANG ]----------------------------------------------------------------------------------------
-#echo -e "\t- Config CLANG"
-#if is_installed "clang";then
-#    echo "CLANG Already Installed"
-#else
-#    cd ~/Download
-#    wget https://apt.llvm.org/llvm.sh
-#    chmod +x llvm.sh
-#    sudo ./llvm.sh 12
-#    cd ~
-#fi
+echo -e "\t- Config Norminette"
+if is_installed "norminette";then
+    echo "Git Already Configured"
+else
+    sudo apt update
+    sudo apt install python3-setuptools
+    sudo apt install pipx
+    pipx install norminette
+    pipx ensurepath
+fi
