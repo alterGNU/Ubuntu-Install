@@ -14,7 +14,7 @@ sudo apt update
 yes | sudo apt upgrade
 
 # -[ LISTE DES PAQUETS A INSTALLER ]----------------------------------------------------------------
-PACK_LIST=("git" "zsh" "python3" "vim" "clang-12" "gdb" "valgrind" "make" "tree")
+PACK_LIST=("git" "zsh" "python3" "vim" "clang-12" "gdb" "valgrind" "make" "tree" "libbsd-dev")
 for pkg in ${PACK_LIST[@]};do
     echo -e "\t- Install package ${pkg}"
     if is_installed "${pkg}";then
