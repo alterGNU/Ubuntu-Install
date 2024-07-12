@@ -8,13 +8,12 @@ cd ~
 if is_installed "yes";then
     echo "coreutils already installed"
 else
-    sudo apt install coreutils
+    yes | sudo apt install coreutils
 fi
 sudo apt update
 yes | sudo apt upgrade
 
 # -[ LISTE DES PAQUETS A INSTALLER ]----------------------------------------------------------------
-PACK_LIST=("git" "zsh" "vim" "clang-12" "gdb" "valgrind" "python3")
 for pkg in ${PACK_LIST[@]};do
     echo -e "\t- Install package ${pkg}"
     if is_installed "${pkg}";then
@@ -24,23 +23,20 @@ for pkg in ${PACK_LIST[@]};do
     fi
 done
 
+# -[ CC ]-------------------------------------------------------------------------------------------
+echo -e "\t- Config VIM"
+if is_installed "cc";then
+    echo "CC already configured"
+else
+    sudo update--alternatives --install /usr/bin/cc cc /usr/bin/clang-12 100
+fi
+
 # -[ VIM ]------------------------------------------------------------------------------------------
 echo -e "\t- Config VIM"
 if [[ -d ~/.vim ]];then
     echo "Vim already configured"
 else
     git clone https://github.com/alterGNU42/.vim.git && cd ~/.vim && git submodule init && git submodule update
-fi
-
-# -[ OH-MY-ZSH ]------------------------------------------------------------------------------------
-echo -e "\t- Config ZSH"
-if [[ -f ~/.zshrc ]];then
-    echo "ZSH Already configured"
-else
-    sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
-    chsh -s $(which zsh)
-    echo "alias ccw=\"cc -Wall -Wextra -Werror -lbsd\"" >> ~/.zshrc
-    echo "export PATH=/home/altergnu/.local/funcheck/host:$PATH" >> ~/.zshrc
 fi
 
 # -[ GOOGLE-CHROME ]--------------------------------------------------------------------------------
@@ -62,18 +58,31 @@ if [[ -f ~/.gitconfig ]];then
 else
     git config --global user.name "alterGNU42"
     git config --global user.email "alterGNU.42@gmail.com"
+    git config --global core.editor "vim"
+    git config --global mergetool vimdiff
     git config --global diff.tool vimdiff
+    git config --global difftool.prompt false
+    git config --global alias.dt difftool
 fi
-#git config --global --list
-
 # -[ NORMINETTE ]-----------------------------------------------------------------------------------
 echo -e "\t- Config Norminette"
 if is_installed "norminette";then
     echo "Git Already Configured"
 else
-    sudo apt update
-    sudo apt install python3-setuptools
-    sudo apt install pipx
+    yes | sudo apt install python3-setuptools
+    yes | sudo apt install pipx
     pipx install norminette
     pipx ensurepath
 fi
+
+# -[ OH-MY-ZSH ]------------------------------------------------------------------------------------
+echo -e "\t- Config ZSH"
+if [[ -f ~/.zshrc ]];then
+    echo "ZSH Already configured"
+else
+    sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+    chsh -s $(which zsh)
+    echo "alias ccw=\"cc -Wall -Wextra -Werror -lbsd\"" >> ~/.zshrc
+    echo "export PATH=/home/altergnu/.local/funcheck/host:$PATH" >> ~/.zshrc
+fi
+
