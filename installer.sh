@@ -14,7 +14,7 @@ sudo apt update
 yes | sudo apt upgrade
 
 # -[ LISTE DES PAQUETS A INSTALLER ]----------------------------------------------------------------
-PACK_LIST=("curl" "git" "zsh" "python3" "vim" "clang-12" "gdb" "valgrind" "make" "tree" "libbsd-dev")
+PACK_LIST=("curl" "git" "zsh" "python3" "vim" "clang-12" "gdb" "valgrind" "make" "tree" "libbsd-dev" "php")
 for pkg in ${PACK_LIST[@]};do
     echo -e "\t- Install package ${pkg}"
     if is_installed "${pkg}";then
@@ -23,6 +23,9 @@ for pkg in ${PACK_LIST[@]};do
         yes | sudo apt install ${pkg}
     fi
 done
+
+# -[ LISTE DES PLUGINS/SUBMODULES VIM ]-------------------------------------------------------------
+VIM_PLUGINS=( "morhetz/gruvbox" "preservim/nerdtree" "alexandregv/norminette-vim" "vim-syntastic/syntastic" "mzlogin/vim-markdown-toc" )
 
 # -[ CC ]-------------------------------------------------------------------------------------------
 echo -e "\t- Config VIM"
@@ -37,7 +40,11 @@ echo -e "\t- Config VIM"
 if [[ -d ~/.vim ]];then
     echo "Vim already configured"
 else
-    git clone https://github.com/alterGNU42/.vim.git && cd ~/.vim && git submodule init && git submodule update
+    cd && git clone https://github.com/alterGNU42/.vim.git ~/.vim
+    echo -e "\n" | vim -c "ReloadVimrc" -c "qa" > /dev/null 2>&1
+    for plug in ${VIM_PLUGINS};do
+        grep -v "${plug}" ~/.vim/.gitmodules 2> /dev/null && git submodule add https://github.com/${plug}.git
+    done
 fi
 
 # -[ GOOGLE-CHROME ]--------------------------------------------------------------------------------
