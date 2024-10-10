@@ -25,7 +25,7 @@ for pkg in ${PACK_LIST[@]};do
 done
 
 # -[ LISTE DES PLUGINS/SUBMODULES VIM ]-------------------------------------------------------------
-VIM_PLUGINS=( "morhetz/gruvbox" "preservim/nerdtree" "alexandregv/norminette-vim" "vim-syntastic/syntastic" "mzlogin/vim-markdown-toc" )
+VIM_PLUGINS=( "morhetz/gruvbox" "preservim/nerdtree" "alexandregv/norminette-vim" "vim-syntastic/syntastic" "mzlogin/vim-markdown-toc" "vimwiki/vimwiki" )
 
 # -[ CC ]-------------------------------------------------------------------------------------------
 echo -e "\t- Config VIM"
