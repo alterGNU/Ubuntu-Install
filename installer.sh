@@ -35,10 +35,11 @@ fi
 # -[ VIM ]------------------------------------------------------------------------------------------
 echo -e "\t- Config VIM"
 if [[ -d ~/.vim ]];then
-    echo "Vim already configured"
-else
-    cd && git clone https://github.com/alterGNU42/.vim.git ~/.vim #TODO Replace by install.sh
+    echo "~/.vim/ folder already exist, we gonna make an Archive at ~/vim_arch_<date> then install
+    my personnal configuration"
+    mv ~/.vim ~/vim_arch_$(date +%Y%m%d)
 fi
+    git clone git@github.com:alterGNU42/.vim.git ~/.vim && vim -c PlugInstall -c qa
 
 # -[ GOOGLE-CHROME ]--------------------------------------------------------------------------------
 echo -e "\t- Install Google-Chrome"
