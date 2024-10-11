@@ -24,9 +24,6 @@ for pkg in ${PACK_LIST[@]};do
     fi
 done
 
-# -[ LISTE DES PLUGINS/SUBMODULES VIM ]-------------------------------------------------------------
-VIM_PLUGINS=( "morhetz/gruvbox" "preservim/nerdtree" "alexandregv/norminette-vim" "vim-syntastic/syntastic" "mzlogin/vim-markdown-toc" "vimwiki/vimwiki" )
-
 # -[ CC ]-------------------------------------------------------------------------------------------
 echo -e "\t- Config VIM"
 if is_installed "cc";then
@@ -40,11 +37,7 @@ echo -e "\t- Config VIM"
 if [[ -d ~/.vim ]];then
     echo "Vim already configured"
 else
-    cd && git clone https://github.com/alterGNU42/.vim.git ~/.vim
-    echo -e "\n" | vim -c "ReloadVimrc" -c "qa" > /dev/null 2>&1
-    for plug in ${VIM_PLUGINS};do
-        grep -v "${plug}" ~/.vim/.gitmodules 2> /dev/null && git submodule add https://github.com/${plug}.git
-    done
+    cd && git clone https://github.com/alterGNU42/.vim.git ~/.vim #TODO Replace by install.sh
 fi
 
 # -[ GOOGLE-CHROME ]--------------------------------------------------------------------------------
