@@ -39,7 +39,7 @@ if [[ -d ~/.vim ]];then
     my personnal configuration"
     mv ~/.vim ~/vim_arch_$(date +%Y%m%d)
 fi
-    git clone git@github.com:alterGNU42/.vim.git ~/.vim && vim -c PlugInstall -c qa
+    git clone git@github.com:alterGNU/.vim.git ~/.vim && vim -c PlugInstall -c qa
 
 # -[ GOOGLE-CHROME ]--------------------------------------------------------------------------------
 echo -e "\t- Install Google-Chrome"
@@ -58,8 +58,8 @@ echo -e "\t- Config GIT"
 if [[ -f ~/.gitconfig ]];then
     echo "Git Already Configured"
 else
-    git config --global user.name "alterGNU42"
-    git config --global user.email "alterGNU.42@gmail.com"
+    git config --global user.name "alterGNU"
+    git config --global user.email "alterGNU@gmail.com"
     git config --global core.editor "vim"
     git config --global mergetool vimdiff
     git config --global diff.tool vimdiff
@@ -87,4 +87,3 @@ else
     echo "alias ccw=\"cc -Wall -Wextra -Werror -lbsd\"" >> ~/.zshrc
     echo "export PATH=/home/altergnu/.local/funcheck/host:$PATH" >> ~/.zshrc
 fi
-

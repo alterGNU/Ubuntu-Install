@@ -4,9 +4,9 @@
 `sh -c "$(wget https://https://github.com/alterGNU42/Ubuntu-Install/blob/main/installer.sh -O -)"`
 
 ## Script install & config :
-- git -> alterGNU42/.git/
+- git -> alterGNU/.git/
 - zsh -> Oh-My-Zsh
-- vim -> alterGNU42/.vim/
+- vim -> alterGNU/.vim/
 - clang-12
 - gdb
 - valgrind
