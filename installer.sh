@@ -14,7 +14,7 @@ sudo apt update
 yes | sudo apt upgrade
 
 # -[ LISTE DES PAQUETS A INSTALLER ]----------------------------------------------------------------
-PACK_LIST=("curl" "git" "zsh" "python3" "vim" "clang-12" "gdb" "valgrind" "make" "tree" "libbsd-dev" "php")
+PACK_LIST=("curl" "git" "zsh" "python3" "vim" "vim-gtk3" "clang-12" "gdb" "valgrind" "make" "tree" "libbsd-dev" "php")
 for pkg in ${PACK_LIST[@]};do
     echo -e "\t- Install package ${pkg}"
     if is_installed "${pkg}";then
@@ -25,7 +25,7 @@ for pkg in ${PACK_LIST[@]};do
 done
 
 # -[ CC ]-------------------------------------------------------------------------------------------
-echo -e "\t- Config VIM"
+echo -e "\t- Config clang:"
 if is_installed "cc";then
     echo "CC already configured"
 else
